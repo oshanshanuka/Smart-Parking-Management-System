@@ -46,7 +46,7 @@ A microservices-based Smart Parking Management System built with Java, Spring Bo
 
 ### Eureka Server Screenshot
 
-![image alt]
+![image alt](https://github.com/oshanshanuka/Smart-Parking-Management-System/blob/main/Screenshot%20(180).png?raw=true)
 
 
 All endpoints are documented in the included Postman collection.
