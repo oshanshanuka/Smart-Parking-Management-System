@@ -7,150 +7,250 @@
 	},
 	"item": [
 		{
-			"name": "user-service",
+			"name": "Parking-spaces-API",
 			"item": [
 				{
-					"name": "get-all-users",
+					"name": "Parking-available",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/parking/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"available"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "[{\"id\":1,\"available\":true,\"occupied\":false},{\"id\":2,\"available\":true,\"occupied\":false}]",
+							"header": []
+						}
+					]
 				},
 				{
-					"name": "user-delete",
-					"request": {
-						"method": "DELETE",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "user-update",
-					"request": {
-						"method": "PUT",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "save-user",
+					"name": "Parking-reserve",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/parking/reserve/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"reserve",
+								"1"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"available\":false,\"occupied\":true}",
+							"header": []
+						},
+						{
+							"name": "Conflict",
+							"status": "409",
+							"body": "\"Parking spot is already reserved.\"",
+							"header": []
+						},
+						{
+							"name": "Not Found",
+							"status": "404",
+							"body": "\"Parking spot not found.\"",
+							"header": []
+						}
+					]
+				},
+				{
+					"name": "Parking-release",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/parking/release/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"release",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"available\":true,\"occupied\":false}",
+							"header": []
+						}
+					]
+				},
+				{
+					"name": "Parking-update-status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"available\": false,\r\n  \"occupied\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/v1/parking/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"available\":false,\"occupied\":true}",
+							"header": []
+						}
+					]
 				}
 			]
 		},
 		{
-			"name": "vehicle-service",
+			"name": "Vehicle-service-API",
 			"item": [
 				{
-					"name": "vehicle-get",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "vehicle-add",
+					"name": "Register-vehicle",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"licensePlate\": \"ABC123\",\r\n  \"ownerName\": \"John Doe\",\r\n  \"userId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8086/api/v1/vehicles/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"register"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"licensePlate\":\"ABC123\",\"ownerName\":\"John Doe\",\"userId\":1}",
+							"header": []
+						}
+					]
 				},
 				{
-					"name": "vehicle-update",
+					"name": "Simulate-entry",
 					"request": {
 						"method": "PUT",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/v1/vehicles/enter/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"enter",
+								"1"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"licensePlate\":\"ABC123\",\"ownerName\":\"John Doe\",\"userId\":1,\"status\":\"Entered\"}",
+							"header": []
+						}
+					]
 				},
 				{
-					"name": "vehicle-delete",
-					"request": {
-						"method": "DELETE",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "parking-service",
-			"item": [
-				{
-					"name": "parking-get",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "parking-book",
-					"request": {
-						"method": "POST",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "parking-update",
+					"name": "Simulate-exit",
 					"request": {
 						"method": "PUT",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8086/api/v1/vehicles/exit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8086",
+							"path": [
+								"api",
+								"v1",
+								"vehicles",
+								"exit",
+								"1"
+							]
+						}
 					},
-					"response": []
-				},
-				{
-					"name": "parking-delete",
-					"request": {
-						"method": "DELETE",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "payment-service",
-			"item": [
-				{
-					"name": "get-payment",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "save-payment",
-					"request": {
-						"method": "POST",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "update-payment",
-					"request": {
-						"method": "PUT",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "payment-delete",
-					"request": {
-						"method": "DELETE",
-						"header": []
-					},
-					"response": []
+					"response": [
+						{
+							"name": "Success",
+							"status": "200",
+							"body": "{\"id\":1,\"licensePlate\":\"ABC123\",\"ownerName\":\"John Doe\",\"userId\":1,\"status\":\"Exited\"}",
+							"header": []
+						}
+					]
 				}
 			]
 		}
