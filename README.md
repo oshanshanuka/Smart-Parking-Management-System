@@ -51,7 +51,7 @@ A microservices-based Smart Parking Management System built with Java, Spring Bo
 
 All endpoints are documented in the included Postman collection.
 
-- [Smart Parking System Postman Collection](Smart-Parking-postman_collection.json)
+- [Smart Parking System Postman Collection](Smart-Parking.postman_collection.json)
 
 
 
